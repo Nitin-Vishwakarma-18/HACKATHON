@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Bid UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            flex: 1;
+            padding: 20px;
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+        }
+        .product-details {
+            flex: 1;
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-size {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .high-demand {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .size-selector {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .size-selector .edit {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .pricing-options {
+            margin-bottom: 20px;
+        }
+        .pricing-options h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .bid-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .bid-option {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .bid-option.selected {
+            border-color: #4CAF50;
+            color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+        .bid-option .price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .bid-option .label {
+            font-size: 14px;
+            color: #666;
+        }
+        .name-your-price input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .price-suggestion {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        .subtotal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .next-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-image">
+            <img src="/Assets/item (1).jpeg" alt="adidas Yeezy Boost 350 V2 Onyx">
+        </div>
+        <div class="product-details">
+            <div class="product-title">adidas Yeezy Boost 350 V2 Onyx</div>
+            <div class="product-size">Size: US M 13</div>
+            <div class="high-demand">🔥 High Demand</div>
+            <p>467 people are interested in this product</p>
+            <div class="size-selector">
+                <span>Size: US Men's 13</span>
+                <span class="edit">EDIT</span>
+            </div>
+            <div class="pricing-options">
+                <h3>Pricing Options <span style="color: #666;">ⓘ</span></h3>
+                <div class="bid-options">
+                    <div class="bid-option" data-price="196">
+                        <div class="price">$196</div>
+                        <div class="label">Good Bid</div>
+                    </div>
+                    <div class="bid-option selected" data-price="216">
+                        <div class="price">$216</div>
+                        <div class="label">Better Bid</div>
+                    </div>
+                    <div class="bid-option" data-price="218">
+                        <div class="price">$218</div>
+                        <div class="label">Buy Now</div>
+                    </div>
+                </div>
+            </div>
+            <div class="name-your-price">
+                <h3>Or Name Your Price</h3>
+                <input type="text" id="custom-price" value="$ 216">
+                <div class="price-suggestion">This is a competitive price that is more likely to match with a seller</div>
+            </div>
+            <div class="subtotal">
+                <div>
+                    <strong>Subtotal $273.88</strong>
+                    <div style="font-size: 12px; color: #666;">Includes Verification Fee. Final price calculated at checkout.</div>
+                </div>
+                <button class="next-button">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bidOptions = document.querySelectorAll('.bid-option');
+            const customPriceInput = document.getElementById('custom-price');
+
+            function updateSelectedOption(selectedOption) {
+                bidOptions.forEach(option => option.classList.remove('selected'));
+                selectedOption.classList.add('selected');
+                customPriceInput.value = '$ ' + selectedOption.dataset.price;
+            }
+
+            bidOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    updateSelectedOption(this);
+                });
+            });
+
+            customPriceInput.addEventListener('input', function() {
+                let value = this.value.replace(/[^0-9]/g, '');
+                this.value = '$ ' + value;
+                bidOptions.forEach(option => option.classList.remove('selected'));
+            });
+
+            customPriceInput.addEventListener('blur', function() {
+                if (this.value === '$ ') {
+                    this.value = '$ 0';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
