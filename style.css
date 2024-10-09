@@ -1,0 +1,155 @@
+/* .container{
+    width: 27rem;
+    height: 45rem;
+    background-color: #3345e8;
+    border-radius: 10px;
+    margin: auto;
+    
+}
+
+.inner-block{
+    position: relative;
+    top: 30rem;
+    background-color: #fff;
+    width: 27rem;
+    height: 15rem; 
+    border-radius: 0 0 10px 10px;
+}
+
+.inner-block button {
+
+} */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.payment-form {
+    background-color: #1b1bf0;
+    color: white;
+    height: 40rem;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 300px;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.company-logo {
+    position: relative;
+    left: 6.6rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.company-name {
+    position: relative;
+    top: 0.5rem;
+    left: 6.35rem;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.trusted-badge {
+    position: relative;
+    top: 1rem;
+    left: 3.9rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.trusted-badge::before {
+    content: "✓";
+    margin-right: 5px;
+}
+
+.total-amount-1 {
+    color: #ffffff96;
+    position: relative;
+    top: 5rem;
+    left: 6.8rem;
+    font-size: 14px;
+}
+
+
+.total-amount {
+    position: relative;
+    top: 5rem;
+    left: 4rem;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.secured-by {
+    position: relative;
+    top: 12rem;
+    left: 5rem;
+    font-size: 12px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+.contact-details {
+    position: relative;
+    top: 12rem;
+    
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 10px 10px 10px 10px;
+}
+.contact-details h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #333;
+}
+.phone-input {
+    display: flex;
+    margin-bottom: 10px;
+}
+.phone-input select, .phone-input input {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+.phone-input select {
+    width: 70px;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+.phone-input input {
+    flex-grow: 1;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+.proceed-btn {
+    background-color: #075ce7;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#link {
+    text-decoration: none;
+    color: #fff;
+}

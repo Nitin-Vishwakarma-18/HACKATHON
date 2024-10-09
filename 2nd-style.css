@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.container {
+    max-width: 380px;
+    margin:20px auto;
+    height: 44rem;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.35);
+}
+.header {
+    background-color: #1b1bf0;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+.back-arrow {
+    margin-right: 15px;
+    font-size: 24px;
+}
+.company-logo {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.company-info {
+    flex-grow: 1;
+}
+.company-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.trusted-badge {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+.trusted-badge::before {
+    content: "✓";
+    background-color: #34a853;
+    color: white;
+    border-radius: 50%;
+    padding: 2px;
+    margin-right: 5px;
+    font-size: 10px;
+}
+.payment-options {
+    padding: 15px;
+}
+.option {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.option-icon {
+    width: 24px;
+    margin-right: 15px;
+}
+.option-text {
+    flex-grow: 1;
+}
+.option-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.option-subtitle {
+    font-size: 12px;
+    color: #666;
+}
+.pay-button {
+    position: relative;
+    top: 6.5rem;
+    background-color: #075ce7;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.amount {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #666;
+}
