@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .invoice-container {
+        margin-top: 30px;
+        background-color: #faf0e6;
+        border: 1px solid black; 
+padding: 20px;
+font-family: 'Calibri', serif;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.invoice h2 {
+color: #4b5320; /* Olive drab heading */
+border-bottom: 2px solid black;
+padding-bottom: 10px;
+margin-bottom: 20px;
+}
+
+.invoice p {
+margin: 10px 0;
+font-size: 16px;
+}
+
+/* Invoice Image */
+#invoiceImage {
+max-width: 100%;
+border: 1px solid #d2b48c;
+padding: 5px;
+background-color: #fff;
+}
+
+/* Image Preview */
+#image-preview {
+margin-top: 10px;
+max-width: 100%;
+border: 1px solid #d2b48c;
+padding: 5px;
+background-color: #fff;
+}
+
+/* Typography & Headings */
+h2 {
+text-align: center;
+font-family: 'Calibri', serif;
+font-size: 28px;
+color: #4b5320;
+margin-bottom: 20px;
+text-transform: uppercase;
+letter-spacing: 2px;
+}
+
+
+/* Thank You Message */
+p {
+font-family: 'Calibri', serif;
+margin-top: 40px;
+font-size: 18px;
+color: #2f4f4f;
+}
+button {
+    background-color: white;
+    color: #000;
+    height: 32px;
+    width: 190px;
+    cursor: pointer;
+    text-align: center;
+    border:1px solid black;
+    left:15rem;
+}
+button:hover{
+    color:white;
+    background-color: #000;
+    transition:all ease 0.4s;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="invoice-container">
+    <h2>Invoice</h2>
+    <p><strong>Item Name:</strong> <span id="invoiceItemName"></span></p>
+    <p><strong>Item Type:</strong> <span id="invoiceItemType"></span></p>
+    <p><strong>Item Description:</strong> <span id="invoiceItemDescription"></span></p>
+    <p><strong>Quality:</strong> <span id="invoiceItemQuality"></span></p>
+    <p><strong>Base Price:</strong> ₹<span id="invoiceItemPrice"></span></p>
+    <p><strong>Thank you for considering our platform!</strong></p>
+
+    <!-- Download PDF Button -->
+    <button type="button" onclick="downloadPDF()">Download Invoice as PDF</button>
+</div>
+
+<!-- Include html2pdf.js for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+<script>
+    // Function to get URL parameters
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Populate invoice data
+    document.getElementById('invoiceItemName').textContent = getQueryParam('itemName');
+    document.getElementById('invoiceItemType').textContent = getQueryParam('itemType');
+    document.getElementById('invoiceItemDescription').textContent = getQueryParam('itemDescription');
+    document.getElementById('invoiceItemQuality').textContent = getQueryParam('itemQuality');
+    document.getElementById('invoiceItemPrice').textContent = getQueryParam('itemPrice');
+
+    // Function to download the invoice as PDF
+    function downloadPDF() {
+        const invoiceElement = document.querySelector('.invoice-container');
+
+        var opt = {
+            margin:       1,
+            filename:     'invoice.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        // Generate and download the PDF
+        html2pdf().from(invoiceElement).set(opt).save();
+    }
+</script>
+
+</body>
+</html>

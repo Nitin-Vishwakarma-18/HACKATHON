@@ -20,6 +20,11 @@
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+        }
         .product-image {
             flex: 1;
             padding: 20px;
@@ -136,7 +141,10 @@
             <img src="./Assets/itemmm.jpg" alt="adidas Yeezy Boost 350 V2 Onyx">
         </div>
         <div class="product-details">
-            <div class="product-title">adidas Yeezy Boost 350 V2 Onyx</div>
+            <div class="timer-container">
+                <div class="product-title">adidas Yeezy Boost 350 V2 Onyx</div>
+                <p class="timer">Time Left: <span id="timer9">90:10:00</span></p>
+            </div>
             <div class="product-size">Size: US M 13</div>
             <div class="high-demand">🔥 High Demand</div>
             <p>467 people are interested in this product</p>
@@ -148,35 +156,38 @@
                 <h3>Pricing Options <span style="color: #666;">ⓘ</span></h3>
                 <div class="bid-options">
                     <div class="bid-option" data-price="196">
-                        <div class="price">$196</div>
+                        <div class="price">₹196</div>
                         <div class="label">Good Bid</div>
                     </div>
                     <div class="bid-option selected" data-price="216">
-                        <div class="price">$216</div>
+                        <div class="price">₹216</div>
                         <div class="label">Better Bid</div>
                     </div>
                     <div class="bid-option" data-price="218">
-                        <div class="price">$218</div>
+                        <div class="price">₹218</div>
                         <div class="label">Buy Now</div>
                     </div>
                 </div>
             </div>
             <div class="name-your-price">
                 <h3>Or Name Your Price</h3>
-                <input type="text" id="custom-price" value="$ 216">
+                <input type="text" id="custom-price" value="₹ 216">
                 <div class="price-suggestion">This is a competitive price that is more likely to match with a seller</div>
             </div>
             <div class="subtotal">
                 <div>
-                    <strong>Subtotal $273.88</strong>
+                    <strong></strong>
                     <div style="font-size: 12px; color: #666;">Includes Verification Fee. Final price calculated at checkout.</div>
                 </div>
-                <button class="next-button">Next</button>
+                <button class="next-button" id="alert-button">Place</button>
             </div>
         </div>
     </div>
 
     <script>
+               document.getElementById('alert-button').addEventListener('click', function() {
+    alert("Your Bid has been successfully Placed");
+});
         document.addEventListener('DOMContentLoaded', function() {
             const bidOptions = document.querySelectorAll('.bid-option');
             const customPriceInput = document.getElementById('custom-price');
@@ -205,6 +216,31 @@
                 }
             });
         });
+
+        // Timer logic for each card
+      function startTimer(timerId, duration) {
+        let time = duration;
+        const timerElement = document.getElementById(timerId);
+
+        const countdown = setInterval(() => {
+          const minutes = Math.floor(time / 60);
+          const seconds = time % 60;
+          timerElement.textContent = `${minutes
+            .toString()
+            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+          if (time > 0) {
+            time--;
+          } else {
+            clearInterval(countdown);
+            timerElement.textContent = "Time's up!";
+          }
+        }, 1000);
+      }
+
+      window.onload = function () {
+        startTimer("timer9", 10 * 60); // 10 minutes
+      };
     </script>
 </body>
 </html>

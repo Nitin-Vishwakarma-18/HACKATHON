@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details Form and Invoice</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: rgb(229, 223, 223);
+            background-size: 100% 100%;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            color:black;
+        }
+
+        .form-container {
+            width: 600px;
+            margin: auto;
+            background: rgba(109, 103, 103, 0.2);  
+            border-radius: 15px;                  
+            padding: 20px;                         
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            backdrop-filter: blur(10px);          
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: white;                          /* Text color for contrast */
+            max-width: 400px;                      /* Optional: Max width for the container */
+            top:10rem;
+            position: relative; 
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 20px;
+           
+                                   
+            
+}
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 15px;
+            font-weight: 15px;
+        }
+
+        input[type="text"], input[type="number"], select, input[type="file"] {
+            width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid black; /* Light brown border */
+    border-radius: 5px;
+    font-family: 'Calibri', serif;
+        }
+
+        #image-preview {
+            width: 100%;
+            max-width: 200px;
+            margin-top: 10px;
+        }
+        button{background-color: white; /* Pale brown background */
+    color: #000;
+    font-weight: bold;
+    font-family: 'Calibri', serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+button:hover{
+    color:white;
+    background-color: #000;
+    transition:all ease 0.4s
+}
+input[type="file"] {
+    padding: 5px;
+}
+
+select {
+    background-color: #faf0e6;
+    padding: 10px;
+} 
+
+        .invoice {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #000;
+            display: none;
+        }
+
+        .form-group#otherTypeGroup {
+            display: none;
+        }
+p{
+    text-align: center;
+}
+    </style>
+</head>
+
+    <body>
+    <div class="whole">
+        <div class="header">
+            <a href="#" class="logo">
+                <img src="logo.jpeg">
+            </a>
+            
+        <nav class="headbar">
+            <a href="/HACKATHON/home page/index.html">Home</a>
+            <a href="/HACKATHON/marketPlace.html">Auction</a>
+            <a href="/HACKATHON/SELLER/ww.html">For Sellers</a>
+            <a href="#">Pages</a>
+            <a href="#">Contact</a>
+        </nav>
+        
+        <div class="menubtn">
+            <button>Bids Live now</button>
+        </div>
+    </div>
+    
+    
+    
+    <div class="form-container">
+        <h1 style="text-align: center;">Item Details Form</h1>
+        <hr style="padding-bottom: 5px;">
+        <form id="itemForm">
+            <!-- Item Name -->
+            <div class="form-group">
+                <label for="itemName">Item Name</label>
+                <input type="text" id="itemName" name="itemName" required placeholder="Enter Your Item Name">
+            </div>
+    
+            <!-- Item Type -->
+            <div class="form-group">
+                <label for="itemType">Item Type</label>
+                <select id="itemType" name="itemType" required onchange="toggleOtherType()">
+                    <option value="apparel">Apparel</option>
+                    <option value="item">Item</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+    
+            <!-- Other Type (textbox appears if 'Other' is selected) -->
+            <div class="form-group" id="otherTypeGroup" style="display:none;">
+                <label for="otherType">Please Specify</label>
+                <input type="text" id="otherType" name="otherType">
+            </div>
+    
+            <!-- Item Description -->
+            <div class="form-group">
+                <label for="itemDescription">Item Description</label>
+                <input type="text" id="itemDescription" name="itemDescription" placeholder="Description" required>
+            </div>
+    
+            <!-- Quality Dropdown -->
+            <div class="form-group">
+                <label for="itemQuality">Quality</label>
+                <select id="itemQuality" name="itemQuality" required>
+                    <option value="high">High</option>
+                    <option value="average">Average</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+    
+            <!-- Base Price -->
+            <div class="form-group">
+                <label for="itemPrice">Base Price</label>
+                <input type="number" id="itemPrice" name="itemPrice" placeholder="Base Price" required>
+            </div>
+    
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="itemImage">Select Image</label>
+                <input type="file" id="itemImage" accept="image/*">
+            </div>
+    
+            <!-- Submit Button -->
+            <button type="button" onclick="generateInvoice()">Submit and Generate Invoice</button>
+        </form>
+    </div>
+</div>
+    <script src="javascript.js"></script>
+    
+    <script>
+        // Show or hide 'Other' type input field
+        function toggleOtherType() {
+            const itemType = document.getElementById('itemType').value;
+            const otherTypeGroup = document.getElementById('otherTypeGroup');
+            otherTypeGroup.style.display = (itemType === 'other') ? 'block' : 'none';
+        }
+    
+        function generateInvoice() {
+            // Collect form data
+            const itemName = document.getElementById('itemName').value;
+            const itemType = document.getElementById('itemType').value;
+            const otherType = document.getElementById('otherType').value;
+            const itemDescription = document.getElementById('itemDescription').value;
+            const itemQuality = document.getElementById('itemQuality').value;
+            const itemPrice = document.getElementById('itemPrice').value;
+    
+            // If 'Other' is selected, use the inputted type
+            const finalItemType = (itemType === 'other') ? otherType : itemType;
+    
+            // Redirect to invoice page with URL parameters
+            const queryString = `?itemName=${encodeURIComponent(itemName)}&itemType=${encodeURIComponent(finalItemType)}&itemDescription=${encodeURIComponent(itemDescription)}&itemQuality=${encodeURIComponent(itemQuality)}&itemPrice=${encodeURIComponent(itemPrice)}`;
+    
+            window.location.href = 'invoice.html' + queryString;
+        }
+    </script>
+    
+    </body>
+    </html>
+    
